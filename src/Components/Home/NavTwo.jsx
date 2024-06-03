@@ -5,22 +5,19 @@ import { CiClock2 } from "react-icons/ci";
 const NavTwo = () => {
   return (
     <div>
-      <footer className="footer items-center p-1 bg-gray-600  text-white text-pretty">
-        <aside className="items-center grid-flow-col ms-5 ">
+      <footer className="footer flex flex-col md:flex-row items-center p-4 bg-gray-600 text-white text-pretty space-y-2 sm:space-y-0">
+        <aside className="flex items-center space-x-4 sm:space-x-6">
           {/* <HiOutlineHome />
            */}
           <IoMailOpenOutline />
-          <a className="me-5">SewTech210@gmail.com</a>
+          <a href="mailto:SewTech210@gmail.com">SewTech210@gmail.com</a>
 
           <CiClock2 />
           <p>Sun-Thursday 8.00 am to 8.00 pm</p>
         </aside>
-        <aside className=" grid-flow-col">
-          {/* <p>66/4, BaganBilash Lane, Paharpur.</p> */}
-        </aside>
 
-        <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-          <a>
+        <nav className="flex space-x-4 sm:ml-auto">
+          <a href="https://www.instagram.com">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -39,7 +36,7 @@ const NavTwo = () => {
             </svg>
           </a>
 
-          <a>
+          <a href="https://www.facebook.com">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

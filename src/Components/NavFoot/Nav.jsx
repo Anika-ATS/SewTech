@@ -27,7 +27,7 @@ const Nav = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-emerald-900 text-white rounded-box w-52 "
+            className="menu menu-sm dropdown-content  mt-3 z-[5] bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white p-2  rounded-box w-52"
           >
             <li>
               <Link to="/">
@@ -35,39 +35,48 @@ const Nav = () => {
                 <a>Home</a>
               </Link>
             </li>
-            {/* <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2">
-            <li>
-              <a>Submenu 1</a>
-            </li>
-            <li>
-              <a>Submenu 2</a>
-            </li>
-          </ul>
-        </details>
-      </li> */}
 
             <li>
-              <Link to="/Handpainted">
+              <Link to="/About">
                 {" "}
-                <a>Handpainted Bags</a>
+                <a>About Us</a>
               </Link>
             </li>
 
             <li>
-              <Link to="/Kids">
-                {" "}
-                <a>Kids Bag</a>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/Adult">
-                {" "}
-                <a>Adult Section</a>
-              </Link>
+              <a>Services</a>
+              <ul className="p-2 text-pretty">
+                <li>
+                  <Link to="/Services">
+                    {" "}
+                    <a>Our Services</a>
+                  </Link>{" "}
+                </li>
+                <li>
+                  <Link to="/Adult">
+                    {" "}
+                    <a>Womens Weardrobe</a>
+                  </Link>{" "}
+                </li>
+                <li>
+                  <Link to="/Tunic">
+                    {" "}
+                    <a>Tunic</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Kids">
+                    {" "}
+                    <a>Childs</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Customise">
+                    {" "}
+                    <a>Customise</a>
+                  </Link>
+                </li>
+              </ul>
             </li>
 
             <li>
@@ -116,67 +125,75 @@ const Nav = () => {
           </ul>
         </div>
         <a className="btn btn-ghost text-base-100 text-2xl font-serif font-bold">
-          NeedleNoodles
+          SewTech
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="text-white  menu menu-horizontal px-1">
+        <ul className="text-white  menu menu-horizontal px-2">
           <li>
             <Link to="/">
               {" "}
               <a>Home</a>
             </Link>
           </li>
-          {/* <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2">
-            <li>
-              <a>Submenu 1</a>
-            </li>
-            <li>
-              <a>Submenu 2</a>
-            </li>
-          </ul>
-        </details>
-      </li> */}
+
           <li>
-            <Link to="/Handpainted">
+            <Link to="/About">
               {" "}
-              <a>Handpainted Bags</a>
+              <a>About Us</a>
             </Link>
           </li>
+
           <li>
-            <Link to="/Kids">
-              {" "}
-              <a>Kids Bag</a>
+            <details>
+              <summary>Services</summary>
+              <ul className=" p-1 shadow menu dropdown-content z-[5] bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white rounded-box w-52">
+                <li>
+                  <Link to="/Services">
+                    {" "}
+                    <a>Our Services</a>
+                  </Link>{" "}
+                </li>
+                <li>
+                  <Link to="/Adult">
+                    {" "}
+                    <a>Womens Weardrobe</a>
+                  </Link>{" "}
+                </li>
+                <li>
+                  <Link to="/Tunic">
+                    {" "}
+                    <a>Tunic</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Kids">
+                    {" "}
+                    <a>Childs</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Customise">
+                    {" "}
+                    <a>Customise</a>
+                  </Link>
+                </li>
+              </ul>
+            </details>
+          </li>
+
+          <li>
+            <Link to="/Gallery">
+              <a>Gallery</a>
             </Link>
           </li>
-          <li>
-            <Link to="/Adult">
-              {" "}
-              <a>Adult Section</a>
-            </Link>
-          </li>
-          {/* <li>
-        <Link to="/Gallery">
-          
-          <a>Gallery</a>
-        </Link>
-      </li> */}
           <li>
             <Link to="/aboutUs">
               {" "}
               <a>Team</a>
             </Link>
           </li>
-          {/* 
-      <li>
-        <Link to="/about">
-          {" "}
-          <a>About</a>
-        </Link>
-      </li> */}
+
           {/* if user here */}
           {/* {user && ( */}
           <li>
