@@ -3,12 +3,12 @@ import Marquee from "react-fast-marquee";
 const Service = () => {
   return (
     <div
-      //   style={{
-      //     backgroundImage:
-      //       "url()",
-      //     backgroundRepeat: "no-repeat",
-      //     backgroundSize: "cover",
-      //   }}
+      style={{
+        backgroundImage:
+          "url(https://www.bhmpics.com/downloads/sewing-background/20.pattern-fabric-and-sewing-accessories-on-a-green-paper-background-flat-lay-top-view-copy.jpg)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
       //   className="bg-gradient-to-r from-[#64d9b9] to-[#1d2939] p-5 mb-5"
 
       className="service-container bg-gradient-to-r from-[#64d9b9] to-[#1d2939] p-5 mb-5
@@ -68,7 +68,7 @@ const Service = () => {
               />
             </figure>
             <div className="card-body items-center text-center">
-              <h2 className="card-title">Stlish Clothing</h2>
+              <h2 className="card-title">Stylish Clothing</h2>
               <p>
                 Our most favourite and skill full area is stylish clothing .
               </p>

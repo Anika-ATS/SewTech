@@ -20,7 +20,7 @@ const About = () => {
           <div className="text-center lg:text-left lg:ml-10">
             <h1
               // className="text-3xl font-bold text-white"
-              className="text-3xl lg:text-4xl font-bold text-white mb-4"
+              className="text-3xl lg:text-4xl font-bold text-white mb-2"
             >
               Meet with the best quality Tailors!
             </h1>
@@ -96,7 +96,6 @@ const About = () => {
                 <li>Cheap Rate</li>{" "}
               </div>
             </ul>
-            {/* <button className="btn btn-primary"></button> */}
           </div>
         </div>
       </div>

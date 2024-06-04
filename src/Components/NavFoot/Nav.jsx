@@ -1,6 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 const Nav = () => {
+  const { logout, user } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <div className="navbar  bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white py-5 px-10 opacity-80">
       <div className="navbar-start">
@@ -27,7 +34,7 @@ const Nav = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content  mt-3 z-[5] bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white p-2  rounded-box w-52"
+            className="menu menu-sm dropdown-content  mt-5 z-[5] bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-black font-bold p-2  rounded-box w-52"
           >
             <li>
               <Link to="/">
@@ -58,12 +65,7 @@ const Nav = () => {
                     <a>Womens Weardrobe</a>
                   </Link>{" "}
                 </li>
-                <li>
-                  <Link to="/Tunic">
-                    {" "}
-                    <a>Tunic</a>
-                  </Link>
-                </li>
+
                 <li>
                   <Link to="/Kids">
                     {" "}
@@ -71,9 +73,9 @@ const Nav = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/Customise">
+                  <Link to="/Customize">
                     {" "}
-                    <a>Customise</a>
+                    <a>Customize</a>
                   </Link>
                 </li>
               </ul>
@@ -87,41 +89,42 @@ const Nav = () => {
             </li>
 
             <li>
-              <Link to="/aboutUs">
+              <Link to="/Team">
                 {" "}
                 <a>Team</a>
               </Link>
             </li>
 
-            {/* {user && ( */}
-            <li>
-              <Link to="/dashboard">
-                <a>DashBoard</a>
-              </Link>
-            </li>
-            {/* )} */}
-
-            {/* {!user && ( */}
-            <>
+            {user && (
               <li>
-                <Link to="/login">
-                  <a>Login</a>
+                <Link to="/dashboard">
+                  <a>DashBoard</a>
                 </Link>
               </li>
-              <li>
-                <Link to="/signin">
-                  <a>Register</a>
-                </Link>
-              </li>
-            </>
-            {/* )} */}
+            )}
 
-            {/* {user && ( */}
-            {/* onClick={handleLogout} */}
-            <li>
-              <button className="btn">Logout</button>
-            </li>
-            {/* )} */}
+            {!user && (
+              <>
+                <li>
+                  <Link to="/login">
+                    <a>Login</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signin">
+                    <a>Register</a>
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {user && (
+              <li>
+                <button className="btn" onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </div>
         <a className="btn btn-ghost text-base-100 text-2xl font-serif font-bold">
@@ -147,7 +150,7 @@ const Nav = () => {
           <li>
             <details>
               <summary>Services</summary>
-              <ul className=" p-1 shadow menu dropdown-content z-[5] bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white rounded-box w-52">
+              <ul className=" p-4 shadow menu dropdown-content   z-[1] bg-white text-black font-bold rounded-box w-52">
                 <li>
                   <Link to="/Services">
                     {" "}
@@ -160,12 +163,7 @@ const Nav = () => {
                     <a>Womens Weardrobe</a>
                   </Link>{" "}
                 </li>
-                <li>
-                  <Link to="/Tunic">
-                    {" "}
-                    <a>Tunic</a>
-                  </Link>
-                </li>
+
                 <li>
                   <Link to="/Kids">
                     {" "}
@@ -173,9 +171,9 @@ const Nav = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/Customise">
+                  <Link to="/Customize">
                     {" "}
-                    <a>Customise</a>
+                    <a>Customize</a>
                   </Link>
                 </li>
               </ul>
@@ -188,50 +186,50 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Link to="/aboutUs">
+            <Link to="/Team">
               {" "}
               <a>Team</a>
             </Link>
           </li>
 
           {/* if user here */}
-          {/* {user && ( */}
-          <li>
-            <Link to="/dashboard">
-              <a>DashBoard</a>
-            </Link>
-          </li>
-          {/* )} */}
-          {/* {!user && ( */}
-          <>
+          {user && (
             <li>
-              <Link to="/login">
-                <a>Login</a>
+              <Link to="/dashboard">
+                <a>DashBoard</a>
               </Link>
             </li>
+          )}
+          {!user && (
+            <>
+              <li>
+                <Link to="/login">
+                  <a>Login</a>
+                </Link>
+              </li>
 
-            <li>
-              <Link to="/signin">
-                <a>Register</a>
-              </Link>
-            </li>
-          </>
-          {/* )} */}
+              <li>
+                <Link to="/signin">
+                  <a>Register</a>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
-        {/* {user && ( */}
-        <button
-          // onClick={handleLogout}
-          className=" text-white font-serif font-bold me-5"
-        >
-          Logout
-        </button>
-        {/* )} */}
+        {user && (
+          <button
+            onClick={handleLogout}
+            className=" text-white font-serif font-bold me-5"
+          >
+            Logout
+          </button>
+        )}
         <div className="avatar">
           <div className="w-12 rounded-full border-2 border-black">
             {/* user?.photoURL || */}
-            <img src={"/public/placeholder.jpg"} />
+            <img src={user?.photoURL || "  /public/placeholder.jpg"} />
           </div>
         </div>
       </div>
