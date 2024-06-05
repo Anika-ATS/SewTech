@@ -1,8 +1,11 @@
 import React from "react";
-import NavTwo from "./NavTwo";
+import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+// import NavTwo from "./NavTwo";
 // import NavTwo from "./NavTwo";
 
 const Banner = () => {
+  const { user } = useAuth();
   return (
     <div>
       <div className=" w-full">
@@ -41,9 +44,13 @@ const Banner = () => {
                 </span>
               </p>
 
-              <button className="btn mt-10 bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white text-xl">
-                Book Appointment
-              </button>
+              {user && (
+                <Link to="/appointment">
+                  <button className="btn mt-10 bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white text-xl">
+                    Book Appointment
+                  </button>
+                </Link>
+              )}
 
               {/* foot */}
               {/* <button className="btn  mt-10 bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white text-xl ">

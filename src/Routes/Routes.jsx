@@ -7,6 +7,9 @@ import SignUp from "../Pages/SignUp";
 import Team from "../Pages/Team";
 import Gallery from "../Pages/Gallery";
 import About from "../Pages/About";
+import Appointment from "../Components/Home/Appointment";
+
+import PrivateRoutes from "../Routes/PrivateRoute/PrivateRoutes";
 
 import WomensWear from "../Pages/ServicePages/WomensWear";
 import OurServices from "../Pages/ServicePages/OurServices";
@@ -47,6 +50,14 @@ export const router = createBrowserRouter([
       {
         path: "/Team",
         element: <Team></Team>,
+      },
+      {
+        path: "/appointment",
+        element: (
+          <PrivateRoutes message="to book an Appointment">
+            <Appointment></Appointment>
+          </PrivateRoutes>
+        ),
       },
 
       // Allservices

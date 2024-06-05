@@ -1,233 +1,170 @@
 import React from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
+
+// import { Controller, useForm } from "react-hook-form";
 const Appointment = () => {
   const staticId = "my-static-id";
-  const {
-    register,
-    handleSubmit,
-    control,
+  const [submitted, setSubmitted] = useState(false);
+  const auth = useAuth();
 
-    formState: { errors },
-  } = useForm();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!auth.isLoggedIn) {
+      alert("Please log in first to submit the order.");
+      return;
+    }
+
+    const formData = new FormData(event.target);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const garmentType = formData.get("garmentType");
+    const description = formData.get("description");
+    const referenceImages = [...formData.getAll("referenceImages")]; // Get all uploaded images
+
+    try {
+      const response = await fetch("/submit-order", {
+        method: "POST",
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          garmentType,
+          description,
+          referenceImages,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        throw new Error("Server error");
+      }
+    } catch (err) {
+      console.error(err.message);
+      // Handle errors appropriately (e.g., display error message to user)
+    }
+  };
+
   return (
-    <div>
-      {/* <div><p className="animate-pulse text-4xl text-pretty font-bold p-5 text-center text-white ">
-        What We Provide
-      </p></div> */}
+    <div className="p-20">
       <div
-        className=" hero "
+        className=" hero min-h-screen "
         style={{
           backgroundImage:
             "url(https://cdn.shopify.com/s/files/1/0625/2639/0491/files/person-hand-sewing-material.jpg?v=1696883061)",
         }}
       >
         <div className="hero-overlay bg-opacity-60 "></div>
-        <div className=" grid grid-cols-2 my-20 py-20">
+        <div className="hero-content flex flex-col  lg:flex-row-reverse w-full lg:w-4/5 xl:w-3/5 mx-auto">
           <div
             id={staticId}
-            className="card  mx-24 w-10/12 shadow-2xl bg-base-200 hover:-translate-y-5 group  border border-[#1d2939] hover:bg-gradient-to-r 
-                from-[#64d9b9] to-[#1d2939] "
+            className="card flex-shrink-0 w-full lg:w-full max-w-sm lg:max-w-full shadow-2xl bg-base-100 mx-4 lg:mx-0 p-5 h-[800px]"
           >
-            <h1 className="mt-3 px-2 shadow-2xl group-hover:text-white text-2xl mx-auto text-[#64d9b9] ">
+            <h1 className="mt-5 p-2 shadow-2xl group-hover: text-bold text-2xl mx-auto bg-gradient-to-r from-[#64d9b9] to-[#1d2939] text-white rounded">
               Book Your Appointment
             </h1>
-            {/* onSubmit={handleSubmit(onSubmit)} */}
-            <form className="card-body ">
-              <div className="form-control">
-                <input
-                  type="text"
-                  //   register
-                  {...register("name", { required: true })}
-                  placeholder="Your Name"
-                  name="name"
-                  className="input input-bordered"
-                />
-                {errors.name && (
-                  <span className="text-red-600">This field is required</span>
-                )}
-              </div>
-              {/* Age */}
-              <div className="form-control  ">
-                <Controller
-                  name="age"
-                  control={control}
-                  rules={{
-                    required: "Age is required ",
-
-                    min: 0,
-                    // message:'Age must be 18 or older than 18'
-                  }}
-                  render={({ field }) => (
-                    <input
-                      type="number"
-                      className="py-3  input input-bordered"
-                      placeholder="Your Age"
-                      {...field}
-                    />
-                  )}
-                />
-                {errors.age && (
-                  <div className="text-red-600">Age shouldn't be negative</div>
-                )}
-                {/* <input type="number"   {...register("Age", { required: true,min:18 })} placeholder="Age" name='Age' className="mt-3 mx-auto w-11/12 text-black input input-bordered border border-cyan-600" />
-                                {errors.Age && <div className="text-red-600 ">This field is required and minimum age must be 18</div>} */}
-              </div>
-              {/* email */}
-              <div className="form-control">
-                <input
-                  type="email"
-                  //   register
-                  {...register("patientEmail", {
-                    required: true,
-                    // pattern: {
-                    //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/,
-                    //     message: 'Invalid email address',
-                    //   },
-                    //  pattern:/(?=.*[a-z])(?=.*[0-9])+@+(gmail.com)/
-                  })}
-                  placeholder="Your email"
-                  name="patientEmail"
-                  className="input input-bordered"
-                />
-                {errors.email && (
-                  <span className="text-red-600">This field is required</span>
-                )}
-              </div>
-              <div className="form-control">
-                <Controller
-                  name="doctorEmail"
-                  control={control}
-                  render={({ field }) => (
-                    <select
-                      {...register("doctorEmail", {
-                        required: true,
-                      })}
-                      defaultValue={"DEFAULT"}
-                      className="mx-auto w-full  text-slate-500 text-md p-3 border border-slate-300 rounded-md"
-                      {...field}
-                    >
-                      {/* <option
-                        value="Seelect a Doctor"
-                        disabled
-                        className="text-slate-300"
-                      >
-                        Select a Doctor
-                      </option> */}
-                      <option value="DEFAULT" disabled>
-                        Please select a Doctor
-                      </option>
-
-                      {/* {Doc.map(item => (
-                        <option
-                          className="py-3 rounded-md"
-                          key={item.email}
-                          value={`${item.email}|${item.name}`}
-                        >
-                          {`${item.name}\u00A0\u00A0\u00A0- (${item.email})`}
-                        </option>
-                      ))} */}
-                    </select>
-                  )}
-                />
-                {errors.doctorEmail && (
-                  <div className="text-red-600">This field is required</div>
-                )}
-              </div>
-
-              {/* phone number */}
-              <div className="form-control">
-                <Controller
-                  name="mobileNumber"
-                  control={control}
-                  rules={{
-                    required: "Mobile number is required",
-                    pattern: {
-                      value: /^(\+?88)?01[3-9]\d{8}/,
-                      // message: 'Invalid Bangladeshi mobile number',
-                    },
-                  }}
-                  render={({ field }) => (
-                    <input
-                      type="tel"
-                      className="py-3 w-full  input input-bordered"
-                      placeholder="Mobile Number"
-                      {...field}
-                    />
-                  )}
-                />
-                {errors.mobileNumber && (
-                  <div className="text-red-600 ">
-                    Mobile number is required and must be Bangladeshi mobile
-                    number
-                  </div>
-                )}
-              </div>
-              {/* Message */}
-              <div className="form-control">
-                <textarea
-                  type="text"
-                  //
-                  {...register("problems", {
-                    required: true,
-                  })}
-                  placeholder="Your Problem"
-                  name="problems"
-                  className="input input-bordered h-28 pt-2"
-                />
-                {errors.problems && (
-                  <span className="text-red-600 ">This field is required</span>
-                )}
-              </div>
-              {/* Date */}
-              <div className="form-control">
-                <input
-                  type="date"
-                  {...register("date", {
-                    required: true,
-                    // value:
-                  })}
-                  placeholder="Date"
-                  name="date"
-                  className="input input-bordered"
-                />
-                {errors.date && (
-                  <span className="text-red-600 ">This field is required</span>
-                )}
-              </div>
-              {/*user report upload if they want to */}
-              <div className="form-control">
-                <label
-                  htmlFor="fileInput"
-                  className="text-teal-700 text-lg font-semibold group-hover:text-white"
-                >
-                  Download and attach medical history report for doctor.
+            <form className="card-body" onSubmit={handleSubmit}>
+              {/* Your Information */}
+              <div className="form-control mt-3">
+                <label className="label">
+                  <span className="label-text">Your Name</span>
                 </label>
                 <input
-                  type="file"
-                  {...register("file", {
-                    required: "Please select a file",
-                  })}
-                  id="fileInput"
-                  name="file"
-                  className="input input-bordered py-3 w-full "
+                  type="text"
+                  placeholder="Enter your name"
+                  className="input input-bordered"
+                  name="name"
+                  required
                 />
-                {errors.file && (
-                  <span className="text-red-600">{errors.file.message}</span>
-                )}
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control ">
+                <label className="label">
+                  <span className="label-text">Email Address</span>
+                </label>
                 <input
-                  className="btn btn-white text-xl  text-[#64d9b9] outline outline-[#44a78d] "
-                  type="submit"
-                  value="Confrim Appointment"
+                  type="email"
+                  placeholder="Enter your email"
+                  className="input input-bordered"
+                  name="email"
+                  required
                 />
               </div>
+              <div className="form-control ">
+                <label className="label">
+                  <span className="label-text">Phone Number (Optional)</span>
+                </label>
+                <input
+                  type="tel"
+                  placeholder="Enter your phone number"
+                  className="input input-bordered"
+                  name="phone"
+                />
+              </div>
+
+              {/* Order Details */}
+              <div className="form-control ">
+                <label className="label">
+                  <span className="label-text">Garment Type</span>
+                </label>
+                <select
+                  className="select input input-bordered"
+                  name="garmentType"
+                  required
+                >
+                  <option value="">-- Select Garment Type --</option>
+                  <option value="shirt">Shirt</option>
+                  <option value="pants">Pants</option>
+                  <option value="dress">Dress</option>
+                  <option value="suit">Suit</option>
+                  {/* Add more garment types as needed */}
+                </select>
+              </div>
+              <div className="form-control ">
+                <label className="label">
+                  <span className="label-text">Describe Your Request</span>
+                </label>
+                <textarea
+                  placeholder="Describe the style, fabric, and any specific details of your desired garment"
+                  className="textarea textarea-bordered h-24"
+                  name="description"
+                  required
+                />
+              </div>
+              <div className="mt-3 ">
+                <div className="form-control ">
+                  <input
+                    type="file"
+                    className="file-input file-input-bordered mt-1"
+                    name="referenceImages"
+                    multiple
+                    accept="image/*"
+                  />
+                </div>
+
+                {/* Submission */}
+                <div className="form-control mt-2 text-white sm:mb-2 ">
+                  <button
+                    type="submit"
+                    className="btn bg-gradient-to-r from-[#64d9b9] to-[#1d2939]
+                     text-white"
+                    disabled={!auth.isLoggedIn}
+                    style={{ color: "white" }}
+                  >
+                    Submit Order
+                  </button>
+                </div>
+              </div>
+
+              {submitted && (
+                <div className="mt-6 text-green-500">
+                  Your order has been submitted successfully!
+                </div>
+              )}
             </form>
-          </div>
-          <div>
-            <figure>
-              {/* <img  src={pic1} alt="" className="w-full" /> */}
-            </figure>
           </div>
         </div>
       </div>
