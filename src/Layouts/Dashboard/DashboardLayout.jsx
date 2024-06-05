@@ -25,7 +25,7 @@ const DashboardLayout = () => {
               <div className="flex items-center    text-white mb-3 gap-2">
                 <BiSolidShoppingBags size={32} />
                 <li className="  text-white text-2xl  w-full font-mono font-bold">
-                  <Link to={"dashboard/all-membars"}>All Bags</Link>
+                  <Link to={"dashboard/all-membars"}>All Membars</Link>
                 </li>
               </div>
 
@@ -33,7 +33,7 @@ const DashboardLayout = () => {
                 <PiHandbagSimpleFill size={28} />
 
                 <li className=" p-2 text-white text-2xl  w-full font-mono font-bold">
-                  <Link to={"dashboard/add-membars"}>Add Bag</Link>
+                  <Link to={"dashboard/add-membars"}>Add Membar</Link>
                 </li>
               </div>
 

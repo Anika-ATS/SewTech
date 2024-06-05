@@ -127,9 +127,14 @@ const Nav = () => {
             )}
           </ul>
         </div>
-        <a className="btn btn-ghost text-base-100 text-2xl font-serif font-bold">
+        <img
+          className="w-24 rounded-full  ring ring-primary ring-offset-base-100 ring-offset-2  animate-bounce "
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbq7-EmsA2Isllr8HUC5nzRP96-KyahSKxFw&s"
+          alt=""
+        />
+        {/* <a className="btn btn-ghost text-base-100 text-2xl font-serif font-bold">
           SewTech
-        </a>
+        </a> */}
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="text-white  menu menu-horizontal px-2">

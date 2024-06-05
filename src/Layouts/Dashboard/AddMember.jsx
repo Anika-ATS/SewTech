@@ -9,12 +9,12 @@ const AddMember = () => {
     const form = e.target;
     // const id = form.id.value;
     const title = form.title.value;
-    const brand = form.brand.value;
-    const price = form.price.value;
+    const post = form.post.value;
+    const serial = form.serial.value;
     const description = form.description.value;
     const image_url = form.image_url.value;
 
-    const data = { title, brand, price, description, image_url };
+    const data = { title, post, serial, description, image_url };
 
     await fetch("http://localhost:3000/membar", {
       method: "POST",
@@ -46,23 +46,23 @@ const AddMember = () => {
                 className="bg-gray-100  text-emerald-800 text-bold p-4 w-full border border-black rounded-lg"
                 type="text"
                 name="title"
-                placeholder="Title"
+                placeholder="Name"
               />
             </div>
             <div className="mt-2">
               <input
                 className="bg-gray-100 text-emerald-800 text-bold p-4 w-full border border-emerald-800 rounded-lg"
                 type="text"
-                name="brand"
-                placeholder="Brand"
+                name="post"
+                placeholder="Post"
               />
             </div>
             <div className="mt-2">
               <input
                 className="bg-gray-100 text-emerald-800 text-bold p-4 w-full border border-emerald-900 rounded-lg"
                 type="number"
-                name="price"
-                placeholder="Price"
+                name="serial"
+                placeholder="ID Number"
               />
             </div>
             <div className="mt-2">
@@ -93,7 +93,7 @@ const AddMember = () => {
               <input
                 className="btn mt-4 w-1/3 items-center bg-gradient-to-r from-[#64d9b9] to-[#1d2939]  text-white text-xl mb-3"
                 type="submit"
-                value="Add Bag"
+                value="Add Membar"
                 onClick={() =>
                   document.getElementById("my_modal_3").showModal()
                 }

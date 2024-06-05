@@ -36,14 +36,15 @@ const Login = () => {
     <div>
       <div
         style={{
-          backgroundImage: `url(${login})`,
+          backgroundImage:
+            "url(https://img.freepik.com/premium-photo/antique-sewing-machine-spool-metal-thread-generated-by-ai_24640-88125.jpg)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
         <div>
           <div className=" font-bold w-[300px] h-[10px]  hover:-translate-y-5 ">
-            <div className="mx-24  group card w-[400px] h-[300px] shadow-4xl">
+            <div className=" group card w-[400px] h-[300px] shadow-4xl">
               {/* form start */}
 
               <div
@@ -51,7 +52,7 @@ const Login = () => {
                 className="  mt-10 card flex-shrink-0 w-full max-w-sm shadow-4xl  "
               >
                 <form>
-                  <div className="h-auto mx-36 card flex-shrink-3 w-full max-w-sm shadow-2xl bg-base-100">
+                  <div className="h-auto mx-32 card flex-shrink-3 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body ">
                       <div className="form-control">
                         {/* <h1>Login</h1> */}

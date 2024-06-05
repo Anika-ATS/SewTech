@@ -126,7 +126,7 @@ export const router = createBrowserRouter([
         ),
 
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/membar/${params.id}`),
+          fetch(`http://localhost:3000/membar/${params._id}`),
       },
     ],
   },

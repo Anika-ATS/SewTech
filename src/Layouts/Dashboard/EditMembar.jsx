@@ -5,9 +5,9 @@ const EditMembar = () => {
   const membar = useLoaderData();
 
   const [title, setTitle] = useState(membar.title);
-  const [price, setPrice] = useState(membar.price);
-  const [brand, setBrand] = useState(membar.brand);
-  //   const [id, setId] = useState(membar.id);
+  const [serial, setSerial] = useState(membar.price);
+  const [post, setPost] = useState(membar.brand);
+  // const [_id, setId] = useState(membar._id);
   const [description, setDescription] = useState(membar.description);
   const [image_url, setImageURL] = useState(membar.image_url);
 
@@ -18,15 +18,15 @@ const EditMembar = () => {
       const form = e.target;
 
       const title = form.title.value;
-      const brand = form.brand.value;
-      const price = form.price.value;
+      const post = form.post.value;
+      const serial = form.serial.value;
       const description = form.description.value;
       const image_url = form.image_url.value;
 
-      const data = { title, brand, price, description, image_url };
+      const data = { title, post, serial, description, image_url };
 
       const response = await fetch(
-        `http://localhost:3000/membar/${membar.id}`,
+        `http://localhost:3000/membar/${membar._id}`,
         {
           method: "PATCH",
           headers: {
@@ -76,20 +76,20 @@ const EditMembar = () => {
             <input
               className="bg-gray-100 text-emerald-800 text-bold p-4 w-full border border-emerald-800 rounded-lg"
               type="text"
-              name="brand"
-              placeholder="Brand"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
+              name="post"
+              placeholder="Post"
+              value={post}
+              onChange={(e) => setPost(e.target.value)}
             />
           </div>
           <div className="mt-2">
             <input
               className="bg-gray-100 text-emerald-800 text-bold p-4 w-full border border-emerald-900 rounded-lg"
               type="number"
-              name="price"
-              placeholder="Price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              name="serial"
+              placeholder="Serial"
+              value={serial}
+              onChange={(e) => setSerial(e.target.value)}
             />
           </div>
           <div className="mt-2">
@@ -127,7 +127,7 @@ const EditMembar = () => {
             <input
               className="btn mt-4 w-1/3 items-center bg-gradient-to-r from-[#64d9b9] to-[#1d2939]  text-white text-xl mb-3"
               type="submit"
-              value="Update Bag"
+              value="Update Membar"
               onClick={() => document.getElementById("my_modal_3").showModal()}
             />
 

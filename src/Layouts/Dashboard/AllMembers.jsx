@@ -22,7 +22,7 @@ const AllMembers = () => {
   // }, []);
 
   const handleDeleteProduct = (id) => {
-    setMembars(membars.filter((membar) => membar.id !== id));
+    setMembars(membars.filter((membar) => membar._id !== id));
   };
 
   return (
@@ -36,8 +36,8 @@ const AllMembers = () => {
           {membars.map((membar) => (
             // <SingleProductCardDashboard
             <SingleMembarCardDash
-              key={membar.id}
-              bag={membar}
+              key={membar._id}
+              membar={membar}
               onDelete={handleDeleteProduct}
             />
           ))}

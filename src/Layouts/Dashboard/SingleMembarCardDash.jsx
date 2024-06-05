@@ -1,24 +1,25 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const SingleMembarCardDash = ({ member, onDelete }) => {
+const SingleMembarCardDash = ({ membar, onDelete }) => {
   // eslint-disable-next-line react/prop-types
-  const { id, title, brand, price, description, image_url } = member;
-  console.log(member);
+  const { _id, title, post, serial, description, image_url } = membar;
+  console.log(membar);
 
   //   delete
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:3000/bags/${member.id}`, {
+    await fetch(`http://localhost:3000/membar/${membar._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (onDelete) {
-          onDelete(id);
+          onDelete(_id);
           Swal.fire({ title: "Deleted Succesfully!", color: "#64d9b9" });
         }
         document.getElementById("my_modal_3").close();
@@ -54,21 +55,21 @@ const SingleMembarCardDash = ({ member, onDelete }) => {
           </h2>
           <h1 className="text-xl font-semibold text-white font-serif ">
             {" "}
-            Brand :{""}
-            {brand}
+            Post :{""}
+            {post}
           </h1>
           <h1 className="text-xl  font-semibold text-white font-serif">
-            {price} BDT
+            {serial} BDT
           </h1>
           <p className="text-white font-serif">{description}</p>
           <div className="card-actions justify-end  ">
             <div className="p-5 badge badge-outline bg-white text-emerald-800 font-bold  mt-5 me-9">
-              <Link to={`/bags/${id}`}>See Details</Link>
+              <Link to={`/membar/${_id}`}>See Details</Link>
             </div>
 
             {/* update */}
             <div className="p-5  badge badge-outline bg-white text-emerald-800 font-bold  mt-5">
-              <Link to={`edit/${id}`}>Edit</Link>
+              <Link to={`edit/${_id}`}>Edit</Link>
             </div>
 
             {/* delete part */}
