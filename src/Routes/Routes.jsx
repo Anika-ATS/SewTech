@@ -15,6 +15,11 @@ import WomensWear from "../Pages/ServicePages/WomensWear";
 import OurServices from "../Pages/ServicePages/OurServices";
 import Kids from "../Pages/ServicePages/Kids";
 import Customize from "../Pages/ServicePages/Customize";
+import DashboardLayout from "../Layouts/Dashboard/DashboardLayout";
+import Dashboard from "../Layouts/Dashboard/Dashboard";
+import AllMembers from "../Layouts/Dashboard/AllMembers";
+import AddMember from "../Layouts/Dashboard/AddMember";
+import EditMembar from "../Layouts/Dashboard/EditMembar";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +30,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        //   loader: () => fetch("http://localhost:3000/bags"),
+        loader: () => fetch("http://localhost:3000/membar"),
       },
 
       {
@@ -83,46 +88,46 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // {
-  //   path: "dashboard",
-  //   element: <DashBoardLayout></DashBoardLayout>,
-  //   errorElement: <ErrorPage />,
-  //   children: [
-  //     {
-  //       path: "home",
-  //       element: (
-  //         <PrivateRoutes>
-  //           <DashBoard></DashBoard>
-  //         </PrivateRoutes>
-  //       ),
-  //     },
-  //     {
-  //       path: "dashboard/all-bags",
-  //       element: (
-  //         <PrivateRoutes>
-  //           <AllBags></AllBags>
-  //         </PrivateRoutes>
-  //       ),
-  //     },
-  //     {
-  //       path: "dashboard/add-bags",
-  //       element: (
-  //         <PrivateRoutes>
-  //           <AddBag></AddBag>
-  //         </PrivateRoutes>
-  //       ),
-  //     },
-  //     {
-  //       path: "dashboard/all-bags/edit/:id",
-  //       element: (
-  //         <PrivateRoutes>
-  //           <EditBags></EditBags>
-  //         </PrivateRoutes>
-  //       ),
+  {
+    path: "dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "home",
+        element: (
+          <PrivateRoutes>
+            <Dashboard></Dashboard>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "dashboard/all-membars",
+        element: (
+          <PrivateRoutes>
+            <AllMembers></AllMembers>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "dashboard/add-membars",
+        element: (
+          <PrivateRoutes>
+            <AddMember></AddMember>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "dashboard/all-membars/edit/:id",
+        element: (
+          <PrivateRoutes>
+            <EditMembar></EditMembar>
+          </PrivateRoutes>
+        ),
 
-  //       loader: ({ params }) =>
-  //         fetch(`http://localhost:3000/bags/${params.id}`),
-  //     },
-  //   ],
-  // },
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/membar/${params.id}`),
+      },
+    ],
+  },
 ]);
